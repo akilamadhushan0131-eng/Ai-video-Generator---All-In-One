@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-const String streamlitUrl = 'https://your-streamlit-app-url.streamlit.app';
+const String streamlitUrl = 'https://sinhala-ai-studio.streamlit.app/';
 
 void main() {
   runApp(const MyApp());
