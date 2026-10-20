@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -32,14 +33,22 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   void initState() {
     super.initState();
+
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://your-streamlit-app-url.streamlit.app'));
+      ..loadRequest(
+        Uri.parse(
+          'https://your-streamlit-app-url.streamlit.app',
+        ),
+      );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sinhala AI Studio'),
+      ),
       body: SafeArea(
         child: WebViewWidget(controller: controller),
       ),
