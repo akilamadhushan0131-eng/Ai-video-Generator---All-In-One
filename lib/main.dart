@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+const String streamlitUrl = 'https://your-streamlit-app-url.streamlit.app';
 
 void main() {
   runApp(const MyApp());
@@ -36,11 +37,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
 
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(
-        Uri.parse(
-          'https://your-streamlit-app-url.streamlit.app',
-        ),
-      );
+      ..loadRequest(Uri.parse(streamlitUrl));
   }
 
   @override
