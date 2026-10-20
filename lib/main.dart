@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
-import 'a_i_studio_dashboard_widget.dart';
-
-// Auto-generated Mock Support for FlutterFlow Theme & Core Utilities
-class FlutterFlowTheme {
-  static FlutterFlowTheme of(BuildContext context) => FlutterFlowTheme();
-  TextStyle get bodyMedium => const TextStyle(fontSize: 14, color: Colors.white);
-  TextStyle get titleLarge => const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white);
-  TextStyle get labelMedium => const TextStyle(fontSize: 12, color: Colors.grey);
-  TextStyle get bodyLarge => const TextStyle(fontSize: 16, color: Colors.white);
-  TextStyle get headlineMedium => const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white);
-  Color get primary => Colors.blue;
-  Color get secondary => Colors.purple;
-  Color get alternate => Colors.amber;
-  Color get primaryBackground => const Color(0xFF1A1A1A);
-  Color get secondaryBackground => const Color(0xFF2A2A2A);
-  Color get primaryText => Colors.white;
-  Color get secondaryText => Colors.grey;
-}
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,10 +13,36 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sinhala AI Studio',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+      theme: ThemeData.dark(),
+      home: const WebViewScreen(),
+    );
+  }
+}
+
+class WebViewScreen extends StatefulWidget {
+  const WebViewScreen({super.key});
+
+  @override
+  State<WebViewScreen> createState() => _WebViewScreenState();
+}
+
+class _WebViewScreenState extends State<WebViewScreen> {
+  late final WebViewController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse('https://your-streamlit-app-url.streamlit.app'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: WebViewWidget(controller: controller),
       ),
-      home: const AIStudioDashboardWidget(),
     );
   }
 }
